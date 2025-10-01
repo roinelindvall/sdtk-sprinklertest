@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+
+<html lang="sv">
+<head>
+<meta charset="utf-8"/>
+<title>SDTK Sprinkler-test</title>
+<link href="css/style.css" rel="stylesheet"/>
+<script defer="" src="js/script_test_sprinklers.js"></script>
+</head>
+<body><audio id="bana4v" src="water.mp3"></audio><audio id="bana4o" src="water.mp3"></audio><audio id="bana5v" src="water.mp3"></audio></audio><audio id="bana5o" src="water.mp3"></audio><audio id="stopp" src="stopp.mp3"></audio><div style="text-align:center; padding:20px; font-size:18px;">Välkommen till SDTK:s app för sprinklertest. Tryck på en knapp för att starta bevattningen 1 min på respektive bana och sida.</div>
+<header>
+<img alt="SDTK Logo" class="logo" src="images/logo.png"/>
+<h1>SDTK Sprinkler-test</h1>
+</header>
+<main>
+<div class="button-container">
+<button onclick="triggerAPI('bana4v')"><img alt="Bana 4 väst" src="images/Bana4v.jpg"/><span>Bana 4 väst</span></button>
+<button onclick="triggerAPI('bana4o')"><img alt="Bana 4 öst" src="images/Bana4o.jpg"/><span>Bana 4 öst</span></button>
+<button onclick="triggerAPI('bana5v')"><img alt="Bana 5 väst" src="images/Bana5v.jpg "/><span>Bana 5 väst</span></button>
+<button onclick="triggerAPI('bana5o')"><img alt="Bana 5 öst" src="images/Bana5o.jpg "/><span>Bana 5 öst</span></button>
+<button onclick="triggerAPI('stop_all')"><img alt="Nödstopp" src="images/Stopp.jpg"/><span>Stoppa allt</span></button>
+</div>
+</main>
+<script>
+    function handleClick(buttonName) {
+        var audio = document.getElementById("clickSound");
+        if (audio) {
+            audio.play();
+        }
+   
+    }
+
+    document.querySelectorAll("img").forEach(function(img) {
+        img.addEventListener("click", function() {
+            handleClick(img.alt || "knapp");
+        });
+    });
+    </script><script>
+function playSound(soundId) {
+    var audio = document.getElementById(soundId);
+    if (audio) {
+        audio.play();
+    }
+    showPopup("Du har tryckt på: " + soundId);
+}
+
+function showPopup(message) {
+    var popup = document.createElement("div");
+    popup.innerText = message;
+    popup.style.position = "fixed";
+    popup.style.top = "40%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.style.backgroundColor = "#0033A0";
+    popup.style.color = "white";
+    popup.style.padding = "24px 32px";
+    popup.style.borderRadius = "16px";
+    popup.style.fontSize = "20px";
+    popup.style.zIndex = "9999";
+    document.body.appendChild(popup);
+    setTimeout(function() {
+        popup.remove();
+    }, 1500);
+}
+</script></body>
+</html>
